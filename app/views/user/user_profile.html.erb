@@ -1,0 +1,11 @@
+<div class="jumbotron jumbotron-fluid" id="jumbotron-user">
+  <div class="container-fluid blockquote text-center d-flex justify-content-center">
+    <ul class="list-group" style="max-width: 30rem;">
+    <li class="list-group-item list-group-item-dark"><%=@user.first_name%> <%=@user.last_name%></li>
+    <li class="list-group-item list-group-item-danger">age : <%=@user.age%> ans</li>
+    <li class="list-group-item list-group-item-danger">ville : <%=@user.city.name%> </li>
+    <li class="list-group-item list-group-item-danger">email : <%=@user.email%> </li>
+    <li class="list-group-item list-group-item-danger">description : <%=@user.description%> </li>
+  </ul>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="jumbotron jumbotron-fluid" id="jumbotron-hero" >
+  <div class="container-fluid blockquote" >
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h1 class="text-center mb-4">Les gossips :</h1>
+  <div class="row text-center d-flex justify-content-around ">
+    <% @gossips.each_with_index do |gossip, index| %>
+      <div class="card text-white bg-dark m-2" style="width: 14rem;">
+        <div class="card-header">
+          gossip n°<%= index + 1%>
+         </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= gossip.title %></h5>
+          <p class="card-text">autheur : <%= gossip.user.first_name %></p>
+          <a class="btn btn-warning" <%= link_to "Voir ce gossip", gossips_path(gossip)%></a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
