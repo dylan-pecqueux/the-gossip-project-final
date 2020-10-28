@@ -2,9 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #contact {
-  height: 700px;
   background-image: url(contact_image.jpg);
-  background-position: center;
+  background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: absolute;
+  min-height: 100vh;
 }

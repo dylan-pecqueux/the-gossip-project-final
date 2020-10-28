@@ -1,0 +1,37 @@
+<html>
+  <body>
+
+    <div class="jumbotron jumbotron-fluid" id="jumbotron-gossip">
+      <div class="container-fluid blockquote text-center">
+        <% if @gossip.errors.any? %>
+          <div class="alert alert-warning text-center" role="alert">
+            <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
+            <ul>
+              <% @gossip.errors.full_messages.each do |message| %>
+                <%= message %><br />
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        
+        <div class="container text-white" id="transparent"  style="max-width: 20rem;">
+          <div class="container d-flex justify-content-center text-center" style="max-width: 30rem" id="transparent-form">
+            <%= form_tag url_for(action: 'create'), method: "post" do %>
+            
+            <%= label_tag 'Title' %><br />
+            <%= text_field_tag :title %>
+            <br /> <br />
+      
+            <%= label_tag 'Content' %><br />
+            <%= text_area_tag :content%>
+            <br /> <br />
+      
+            <%= submit_tag "Create Post" %>
+      
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

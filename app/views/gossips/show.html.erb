@@ -1,0 +1,25 @@
+<body>
+  <div class="jumbotron jumbotron-fluid" id="jumbotron-gossip">
+    <div class="container-fluid blockquote text-center">
+      <% flash.each do |type, msg| %>
+        <div class="alert alert-info">
+          <%= msg %>
+        </div>
+      <% end %>
+      <div class="container text-white" id="transparent"  style="max-width: 20rem;">
+        <div class="container">
+          <div class="card-body">
+            <h5 class="card-title"><%= @gossip.title %></br></h5>
+            <p class="card-text"><%= @gossip.content %></p>
+            <p class="blockquote-footer text-light">Auteur : <%=@gossip.user.first_name%></p>
+            <p class="blockquote-footer text-light">Ville de l'auteur : <br /><%=@gossip.user.city.name%></p>
+            <a class="btn btn-primary" <%= link_to "Profil de l'utilisateur", user_path(@gossip.user)%></a>
+          </div>
+          <div class="text-muted">
+            <%= @gossip.created_at %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

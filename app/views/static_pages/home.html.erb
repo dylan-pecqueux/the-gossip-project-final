@@ -1,21 +1,21 @@
-<div class="jumbotron jumbotron-fluid" id="jumbotron-hero" >
-  <div class="container-fluid blockquote" >
-    </div>
+<div class="jumbotron jumbotron-fluid border-bottom row align-items-end" id="jumbotron-hero" >
+  <div class="container-fluid blockquote text-center rounded" id="button">
+    <a class="btn btn-primary btn-md m-3" href="<%=new_gossip_path%>" role="button">Partages-nous tes secrets</a>
   </div>
 </div>
 
 <div class="container">
-  <h1 class="text-center mb-4">Les gossips :</h1>
+  <h1 class="text-center text-light m-5">Les gossips :</h1>
   <div class="row text-center d-flex justify-content-around ">
     <% @gossips.each_with_index do |gossip, index| %>
       <div class="card text-white bg-dark m-2" style="width: 14rem;">
         <div class="card-header">
           gossip n°<%= index + 1%>
-         </div>
+        </div>
         <div class="card-body">
           <h5 class="card-title"><%= gossip.title %></h5>
-          <p class="card-text">autheur : <%= gossip.user.first_name %></p>
-          <a class="btn btn-warning" <%= link_to "Voir ce gossip", gossips_path(gossip)%></a>
+          <p class="card-text">auteur : <%= gossip.user.first_name %></p>
+          <a class="btn btn-outline-primary" <%= link_to "Voir ce gossip", gossip_path(gossip)%></a>
         </div>
       </div>
     <% end %>

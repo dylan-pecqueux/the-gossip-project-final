@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  resources :gossips, only: [:new, :create, :index, :show]
   get '/user/:user_profile', to: 'user#user_profile', as: 'user'
-  get '/gossips/:gossip_id', to: 'gossips#gossip_id', as: 'gossips'
   get 'welcome/:first_name', to: 'welcome#first_name'
   get '/static_pages/contact', to: 'static_pages#contact'
   get '/static_pages/team', to: 'static_pages#team'

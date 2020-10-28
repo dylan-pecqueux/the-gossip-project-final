@@ -7,4 +7,10 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+#transparent-array {
+  background: rgba(17, 48, 58, 0.9);
 }
