@@ -25,6 +25,9 @@
         <div class="card-body">
           <h5 class="card-title"><%= gossip.title %></h5>
           <p class="card-text">auteur : <%= gossip.user.first_name %></p>
+          <p><%= gossip.likes.count %> <%= (gossip.likes.count) <= 1 ? 'Like' : 'Likes'%></p>
+          <a class="btn btn-outline-primary"  <%= link_to 'Like', gossip_likes_path(gossip), method: :post %></a>
+         
           <a class="btn btn-outline-primary" <%= link_to "Voir ce gossip", gossip_path(gossip)%></a>
         </div>
       </div>

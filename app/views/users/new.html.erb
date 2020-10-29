@@ -3,7 +3,8 @@
 
     <div class="jumbotron jumbotron-fluid" id="jumbotron-form">
       <div class="container-fluid blockquote text-center">
-     <% if @user.errors.any? %>
+      
+        <% if @user.errors.any? %>
           <div class="alert alert-warning text-center" role="alert">
             <p>Nous n'avons pas réussi à créer votre compte pour la (ou les) raison(s) suivante(s) :</p>
             <ul>
@@ -13,46 +14,64 @@
             </ul>
           </div>
         <% end %>
+
         <div class="container d-flex justify-content-around text-center">
-        <h2 class="list-group-item active" style="width: 25rem;">Rentre tes informations :</h2>
+          <h2 class="list-group-item active" style="width: 35rem;">Rentre tes informations :</h2>
         </div>
-        <div class="container d-flex flex-column text-white" id="transparent"  style="max-width: 25rem; max-height: 50rem">
+        <div class="container d-flex flex-column text-white" id="transparent"   style="max-width: 35rem; max-height: 50rem">
           <div class="container d-flex justify-content-around text-center" style="max-width: 30rem" id="transparent-form">
+          
             <%= form_tag url_for(action: 'create'), class: "my-4", method: "post" do %>
+              <div class="form-inline">
+                <div class="col-md-3 mr-5">
+                  <%= label_tag 'Prénom :' %>
+                  <%= text_field_tag :first_name %>
+                </div>
+                <div class="col-md-3 ml-5">
+                  <%= label_tag 'Nom :' %>
+                  <%= text_field_tag :last_name %>
+                </div>
+              </div>
             
-            <%= label_tag 'Prénom' %><br />
-            <%= text_field_tag :first_name %>
-            <%= label_tag 'Nom' %><br />
-            <%= text_field_tag :last_name %>
-            <br /> <br />
-
-            <%= label_tag 'Email' %><br />
-            <%= text_field_tag :email %>
-            <br /> <br />
-      
-            <%= label_tag 'Description' %><br />
-            <%= text_area_tag :content %>
-            <br /> <br />
-
-            <%= label_tag 'Ville :' %><br />
-            <%= select_tag 'city', options_for_select(City.all.collect{ |u| [u.name, u.id] }), :class => "form-control mb-3" %>
-            <br />
-
-            <%= label_tag 'Mot de passe' %><br />
-            <%= text_field_tag :password %>
-            <br /> <br />
-
-            <%= label_tag 'Mot de passe' %><br />
-            <%= text_field_tag :password_confirmation %>
-            <br /> <br />
-      
-            <%= submit_tag "Créer", class: "btn btn-primary" %>
-      
+              <div class="form-inline">
+                <div class="col-md-4 mr-2 my-3">
+                  <%= label_tag 'Ville :' %>
+                  <%= select_tag 'city', options_for_select(City.all.collect{ |u| [u.name, u.id] }), :class => "form-control" %>
+                </div>
+                <div class="col-md-4 ml-5">
+                <%= label_tag 'Age :' %>
+                <%= text_field_tag :age %>
+                </div>
+              </div>
+              <div class="form-inline">
+                <div class="col-md-5 mt-3">
+                  <%= label_tag 'Email' %>
+                  <%= text_field_tag :email %>
+                </div>
+                <div class="col-md-4 ml-3 mt-3">
+                  <%= label_tag 'Description' %>
+                  <%= text_area_tag :content %>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-4 mr-5 mt-3">
+                  <%= label_tag 'Mot de passe' %>
+                  <%= text_field_tag :password %>
+                </div>
+                <div class="col-md-4 ml-3 mt-3">
+                  <%= label_tag 'Confirmer' %>
+                  <%= text_field_tag :password_confirmation %>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-10 ml-3 mt-5">
+                  <%= submit_tag "Créer le compte", class: "btn btn-primary" %>
+                </div>
+              </div>
             <% end %>
           </div>
         </div>
       </div>
     </div>
-    
   </body>
 </html>

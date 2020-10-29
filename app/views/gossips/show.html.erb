@@ -17,6 +17,13 @@
             <p class="blockquote-footer text-light">Auteur : <a class="" href="<%=user_path(@gossip.user)%>"><%=@gossip.user.first_name%></p></a>
             <p class="blockquote-footer text-light">Ville de l'auteur : <br /> <a class="" href="<%= city_path(@gossip.user.city)%>"><%=@gossip.user.city.name%></p></a>
             <p class="blockquote-footer"> Commentaires : <%= @gossip.comments.count %></p>
+            <p><%= @gossip.likes.count %> <%= (@gossip.likes.count) <= 1 ? 'Like' : 'Likes'%></p>
+            <% pre_like = @gossip.likes.find { |like| like.user_id == current_user.id} %>
+            <% if pre_like %>
+              <a class="btn btn-outline-primary"  <%= link_to 'Unlike', gossip_like_path(@gossip, pre_like), method: :delete %></a>
+            <% else %>
+              <a class="btn btn-outline-primary"  <%= link_to 'Like', gossip_likes_path(@gossip), method: :post  %></a>
+            <% end %>
             <% if current_user == @gossip.user %>
             <div class="btn-group" role="group" aria-label="Basic example">
               <a class="btn btn-primary" <%= link_to "Editer", edit_gossip_path(@gossip)%></a>
