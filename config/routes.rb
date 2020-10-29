@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :gossips, only: [:new, :create, :index, :show]
+  resources :gossips do
+    resources :comments
+  end
+  resources :cities, only: [:index, :show]
+  resources :tag, only: [:index]
   get '/user/:user_profile', to: 'user#user_profile', as: 'user'
   get 'welcome/:first_name', to: 'welcome#first_name'
   get '/static_pages/contact', to: 'static_pages#contact'

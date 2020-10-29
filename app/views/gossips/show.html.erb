@@ -1,19 +1,26 @@
 <body>
   <div class="jumbotron jumbotron-fluid" id="jumbotron-gossip">
     <div class="container-fluid blockquote text-center">
-      <% flash.each do |type, msg| %>
-        <div class="alert alert-info">
-          <%= msg %>
-        </div>
-      <% end %>
       <div class="container text-white" id="transparent"  style="max-width: 20rem;">
         <div class="container">
           <div class="card-body">
             <h5 class="card-title"><%= @gossip.title %></br></h5>
             <p class="card-text"><%= @gossip.content %></p>
-            <p class="blockquote-footer text-light">Auteur : <%=@gossip.user.first_name%></p>
-            <p class="blockquote-footer text-light">Ville de l'auteur : <br /><%=@gossip.user.city.name%></p>
-            <a class="btn btn-primary" <%= link_to "Profil de l'utilisateur", user_path(@gossip.user)%></a>
+            <p class="blockquote-footer text-light"> Tags :
+            <% @gossip.tags.each do |x| %>
+            <%= x.title %>   
+            <% end %>
+            </p>
+
+
+            </p>
+            <p class="blockquote-footer text-light">Auteur : <a class="" href="<%=user_path(@gossip.user)%>"><%=@gossip.user.first_name%></p></a>
+            <p class="blockquote-footer text-light">Ville de l'auteur : <br /> <a class="text-light" href="<%= city_path(@gossip.user.city)%>"><%=@gossip.user.city.name%></p></a>
+            <p class="blockquote-footer"> Commentaires : <%= @gossip.comments.count %></p>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a class="btn btn-primary" <%= link_to "Editer", edit_gossip_path(@gossip)%></a>
+              <a class="btn btn-warning" href="<%=gossip_path(@gossip)%>" data-confirm="êtes vous sur de vouloir supprimer ce gossip ?" data-method="DELETE">Supprimer</a>
+            </div>
           </div>
           <div class="text-muted">
             <%= @gossip.created_at %>
@@ -22,4 +29,33 @@
       </div>
     </div>
   </div>
+
+  <% flash.each do |type, msg| %>
+    <div class="d-flex justify-content-center mt-2">
+      <div class="alert alert-info" style="max-width: 50rem">
+        <%= msg %>
+      </div>
+    </div>
+  <% end %>
+  
+  <div class="container">
+  <h2 class="text-center text-light mb-4">Commentaires :</h2>
+ 
+    <% @gossip.comments.each_with_index do |comment, index| %>
+      <div class="card text-white bg-dark m-2" >
+        <div class="card-body">
+        <h5 class="card-title"> <a class="text-primary" href="<%=user_path(comment.user)%>"><%= comment.user.first_name %> :</a></h5>
+          <p class="card-text"><%= comment.content %></p>
+          <a class="btn btn-primary" <%= link_to "Editer", edit_gossip_comment_path(@gossip, comment)%></a>
+        </div>
+      </div>
+    <% end %>
+
+</div>
+<div class="d-flex justify-content-center my-4">
+    <%= form_for([@gossip, @gossip.comments.build]) do |f| %>
+      <%= f.text_area :content, class: "rounded", style: "width: 40rem; height: 2rem", placeholder: "Ecris-ton commentaire" %>
+      <%= f.submit "Créer", class: 'mx-2 btn btn-primary position-absolute', style: "height: 2rem; padding: 1px"%>
+  <% end %>
+</div>
 </body>

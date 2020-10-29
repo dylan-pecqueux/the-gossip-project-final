@@ -1,17 +1,15 @@
-// Place all the styles related to the gossips controller here.
+// Place all the styles related to the comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#jumbotron-gossip {
-  height: 600px;
+#jumbotron-edit {
   background-image: url(comerage.jpg);
-  background-position: center;
   background-repeat: no-repeat;
-
+  background-attachment: absolute;
+  background-position: center center;
   background-size: cover;
+  min-height: 100vh;
 }
 
 #transparent {
   background: rgba(17, 48, 58, 0.9);
 }
-
-
