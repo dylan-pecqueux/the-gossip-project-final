@@ -33,7 +33,26 @@
             <a class="nav-link" href="<%=new_gossip_path%>">Créer un gossip</a>
           </li>
         </ul>
-      </div>
+        <ul class="navbar-nav ml-auto">
+          <% if logged_in?%>
+          <li class="ml-auto p-2">Connecté en tant que <%=current_user.first_name%>,</li>
+            <li class="nav-item">
+              <a class="nav-link ml-auto p-2" <%= link_to "Se deconnecter ?", session_path(session.id), method: :delete%></a>
+            </li>
+          <% else %>
+            <div class="dropdown ml-auto p-2">
+              <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Se connecter/Créer un compte
+              </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="<%=new_session_path%>">Se connecter</a>
+              <a class="dropdown-item" href="<%=new_user_path%>">Créer un compte</a>
+            </div>
+          </div>
+          <% end %>
+          
+        </ul>
+        </div>
     </nav>
     <%= yield %>
 

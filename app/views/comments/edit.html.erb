@@ -5,7 +5,7 @@
       <div class="container-fluid blockquote text-center">
         <% if @gossip.errors.any? %>
           <div class="alert alert-warning text-center" role="alert">
-            <p>Nous n'avons pas réussi à modifier le potin pour la (ou les) raison(s) suivante(s) :</p>
+            <p>Nous n'avons pas réussi à modifier ton commentaire pour les raisons suivante :</p>
             <ul>
               <% @gossip.errors.full_messages.each do |message| %>
                 <%= message %><br />
@@ -15,7 +15,7 @@
         <% end %>
 
         <div class="container d-flex justify-content-around text-center">
-        <h2 class="list-group-item active" style="width: 25rem;">Edite ton gossip :</h2>
+        <h2 class="list-group-item active" style="width: 25rem;">Edite ton commentaire :</h2>
         </div>
         
         <div class="container text-white" id="transparent"  style="max-width: 25rem;">

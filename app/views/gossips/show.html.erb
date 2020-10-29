@@ -15,12 +15,14 @@
 
             </p>
             <p class="blockquote-footer text-light">Auteur : <a class="" href="<%=user_path(@gossip.user)%>"><%=@gossip.user.first_name%></p></a>
-            <p class="blockquote-footer text-light">Ville de l'auteur : <br /> <a class="text-light" href="<%= city_path(@gossip.user.city)%>"><%=@gossip.user.city.name%></p></a>
+            <p class="blockquote-footer text-light">Ville de l'auteur : <br /> <a class="" href="<%= city_path(@gossip.user.city)%>"><%=@gossip.user.city.name%></p></a>
             <p class="blockquote-footer"> Commentaires : <%= @gossip.comments.count %></p>
+            <% if current_user == @gossip.user %>
             <div class="btn-group" role="group" aria-label="Basic example">
               <a class="btn btn-primary" <%= link_to "Editer", edit_gossip_path(@gossip)%></a>
               <a class="btn btn-warning" href="<%=gossip_path(@gossip)%>" data-confirm="êtes vous sur de vouloir supprimer ce gossip ?" data-method="DELETE">Supprimer</a>
             </div>
+            <% end %>
           </div>
           <div class="text-muted">
             <%= @gossip.created_at %>
@@ -46,7 +48,9 @@
         <div class="card-body">
         <h5 class="card-title"> <a class="text-primary" href="<%=user_path(comment.user)%>"><%= comment.user.first_name %> :</a></h5>
           <p class="card-text"><%= comment.content %></p>
+          <% if current_user == comment.user %>
           <a class="btn btn-primary" <%= link_to "Editer", edit_gossip_comment_path(@gossip, comment)%></a>
+          <% end %>
         </div>
       </div>
     <% end %>

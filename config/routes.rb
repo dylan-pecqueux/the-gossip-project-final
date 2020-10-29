@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   end
   resources :cities, only: [:index, :show]
   resources :tag, only: [:index]
-  get '/user/:user_profile', to: 'user#user_profile', as: 'user'
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
   get 'welcome/:first_name', to: 'welcome#first_name'
   get '/static_pages/contact', to: 'static_pages#contact'
   get '/static_pages/team', to: 'static_pages#team'

@@ -1,0 +1,58 @@
+<html>
+  <body>
+
+    <div class="jumbotron jumbotron-fluid" id="jumbotron-form">
+      <div class="container-fluid blockquote text-center">
+     <% if @user.errors.any? %>
+          <div class="alert alert-warning text-center" role="alert">
+            <p>Nous n'avons pas réussi à créer votre compte pour la (ou les) raison(s) suivante(s) :</p>
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <%= message %><br />
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="container d-flex justify-content-around text-center">
+        <h2 class="list-group-item active" style="width: 25rem;">Rentre tes informations :</h2>
+        </div>
+        <div class="container d-flex flex-column text-white" id="transparent"  style="max-width: 25rem; max-height: 50rem">
+          <div class="container d-flex justify-content-around text-center" style="max-width: 30rem" id="transparent-form">
+            <%= form_tag url_for(action: 'create'), class: "my-4", method: "post" do %>
+            
+            <%= label_tag 'Prénom' %><br />
+            <%= text_field_tag :first_name %>
+            <%= label_tag 'Nom' %><br />
+            <%= text_field_tag :last_name %>
+            <br /> <br />
+
+            <%= label_tag 'Email' %><br />
+            <%= text_field_tag :email %>
+            <br /> <br />
+      
+            <%= label_tag 'Description' %><br />
+            <%= text_area_tag :content %>
+            <br /> <br />
+
+            <%= label_tag 'Ville :' %><br />
+            <%= select_tag 'city', options_for_select(City.all.collect{ |u| [u.name, u.id] }), :class => "form-control mb-3" %>
+            <br />
+
+            <%= label_tag 'Mot de passe' %><br />
+            <%= text_field_tag :password %>
+            <br /> <br />
+
+            <%= label_tag 'Mot de passe' %><br />
+            <%= text_field_tag :password_confirmation %>
+            <br /> <br />
+      
+            <%= submit_tag "Créer", class: "btn btn-primary" %>
+      
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </body>
+</html>

@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
  before_action :find_gossip!
+ before_action :authenticate_user, only: [:new, :create]
 
   def new
     @comment = Comment.new
@@ -7,7 +8,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @gossip.comments.new(comment_params)
-    @comment.user = User.find(11)
+    @comment.user = current_user
     if @comment.save
       redirect_to gossip_path(find_gossip!)
      flash[:notice] = 'Ton commentaire est en ligne'
@@ -45,5 +46,12 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content)
+  end
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Connecte-toi"
+      redirect_to new_session_path
+    end
   end
 end

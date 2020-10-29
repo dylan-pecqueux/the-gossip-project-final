@@ -1,4 +1,7 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user, only: [:show, :new, :create]
+  before_action :is_author?, only: [:edit, :update, :destroy]
+
   def show
     @gossip = Gossip.find(params[:id])
   end
@@ -9,7 +12,7 @@ class GossipsController < ApplicationController
   end
 
   def create
-    @gossip = Gossip.new(title: params[:title], content: params[:content], user: User.find(11))
+    @gossip = Gossip.new(title: params[:title], content: params[:content], user: current_user)
     if @gossip.save
       params[:tag].try(:each) do |i|
         @linktag = Linktag.new(tag_id: Tag.find(i).id, gossip_id: @gossip.id)
@@ -41,5 +44,22 @@ class GossipsController < ApplicationController
     @gossip = Gossip.find(params[:id])
     @gossip.destroy
     redirect_to "/"
+  end
+
+  private
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Connecte-toi"
+      redirect_to new_session_path
+    end
+  end
+
+  def is_author?
+    @gossip = Gossip.find(params[:id])
+    unless current_user == @gossip.user
+      flash[:danger] = "action impossible, tu n'es pas l'auteur"
+      redirect_to @gossip
+    end
   end
 end

@@ -1,0 +1,37 @@
+<html>
+  <body>
+
+    <div class="jumbotron jumbotron-fluid" id="jumbotron-form">
+      <div class="container-fluid blockquote text-center">
+     <% flash.each do |type, msg| %>
+    <div class="d-flex justify-content-center mt-2">
+      <div class="alert alert-info" style="max-width: 50rem">
+        <%= msg %>
+      </div>
+    </div>
+  <% end %>
+        <div class="container d-flex justify-content-around text-center">
+        <h2 class="list-group-item active" style="width: 25rem;">Connection :</h2>
+        </div>
+        <div class="container d-flex flex-column text-white" id="transparent"  style="max-width: 25rem; max-height: 50rem">
+          <div class="container d-flex justify-content-around text-center" style="max-width: 30rem" id="transparent-form">
+            <%= form_tag url_for(action: 'create'), class: "my-4", method: "post" do %>
+
+            <%= label_tag 'Email' %><br />
+            <%= text_field_tag :email %>
+            <br /> <br />
+
+            <%= label_tag 'Mot de passe' %><br />
+            <%= text_field_tag :password %>
+            <br /> <br />
+      
+            <%= submit_tag "Créer", class: "btn btn-primary" %>
+      
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </body>
+</html>
