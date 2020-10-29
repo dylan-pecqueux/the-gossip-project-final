@@ -1,6 +1,4 @@
 # README
 
-Première version de la version finale de the gossip project
-cette version contient, la database ainsi que les controllers et les views de base.
-
-get '/gossips/:gossip_id', to: 'gossips#gossip_id', as: 'gossips'
+Version finale de the gossip project créer durant la formation THP.
+The gossip project est un site ou l'on peut créer des utilisateurs et ecrire des potins.
