@@ -3,7 +3,7 @@
 
     <div class="jumbotron jumbotron-fluid" id="jumbotron-form">
       <div class="container-fluid blockquote text-center">
-      
+
         <% if @user.errors.any? %>
           <div class="alert alert-warning text-center" role="alert">
             <p>Nous n'avons pas réussi à créer votre compte pour la (ou les) raison(s) suivante(s) :</p>
@@ -56,11 +56,11 @@
               <div class="form-row">
                 <div class="col-md-4 mr-5 mt-3">
                   <%= label_tag 'Mot de passe' %>
-                  <%= text_field_tag :password %>
+                  <%= password_field_tag :password %>
                 </div>
                 <div class="col-md-4 ml-3 mt-3">
                   <%= label_tag 'Confirmer' %>
-                  <%= text_field_tag :password_confirmation %>
+                  <%= password_field_tag :password_confirmation %>
                 </div>
               </div>
               <div class="form-row">

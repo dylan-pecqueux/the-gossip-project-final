@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       if @user.save
         log_in(@user)
         redirect_to "/"
-        flash[:notice] = "Bienvenue parmis nous : #{@user.first_name}"
+        flash[:notice] = "Bienvenue parmis nous : #{@user.first_name} !"
       else
         render 'new'
       end

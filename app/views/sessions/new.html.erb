@@ -5,7 +5,7 @@
       <div class="container-fluid blockquote text-center">
      <% flash.each do |type, msg| %>
     <div class="d-flex justify-content-center mt-2">
-      <div class="alert alert-info" style="max-width: 50rem">
+      <div class="alert alert-warning" style="max-width: 50rem">
         <%= msg %>
       </div>
     </div>
@@ -22,10 +22,13 @@
             <br /> <br />
 
             <%= label_tag 'Mot de passe' %><br />
-            <%= text_field_tag :password %>
+            <%= password_field_tag :password %>
             <br /> <br />
+
+            <a class="blockquote-footer text-white" href="<%=new_user_path%>">Créer un compte</a>
+            <br /> 
       
-            <%= submit_tag "Créer", class: "btn btn-primary" %>
+            <%= submit_tag "Se connecter", class: "btn btn-primary" %>
       
             <% end %>
           </div>
